@@ -1,17 +1,18 @@
 import { Routes } from '@angular/router';
 
-
 export const routes: Routes = [
-    
-    {
-        path: '',
-        redirectTo: 'participantes',
-        pathMatch: 'full'
-
-
-    },
-    {
-        path: 'participantes',
-        loadComponent: () => import('./features/participantes/components/participantes/participantes.component').then(m => m.ParticipantesComponent)
-    }
+  {
+    path: 'evaluadores',
+    loadComponent: () =>
+      import(
+        './features/evaluadores/components/evaluadores/evaluadores.component'
+      ),
+  },
+  {
+    path: 'participantes',
+    loadComponent: () =>
+      import(
+        './features/participantes/components/participantes/participantes.component'
+      ).then((m) => m.ParticipantesComponent),
+  },
 ];
