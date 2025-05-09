@@ -1,0 +1,40 @@
+<div>
+  <h2>Registrar Evaluador</h2>
+
+  <form (ngSubmit)="addEvaluador()" #evaluadorForm="ngForm">
+    <label for="nombreCompleto">Nombre Completo:</label>
+    <input
+      id="nombreCompleto"
+      [(ngModel)]="evaluador.nombreCompleto"
+      name="nombreCompleto"
+      required
+    />
+
+    <div *ngFor="let num of [0, 1, 2, 3, 4]; let i = index">
+      <label for="numCuenta{{ i }}">Número de Cuenta {{ i + 1 }}:</label>
+      <input
+        id="numCuenta{{ i }}"
+        [(ngModel)]="evaluador.numerosCuentaParticipantes[i]"
+        name="numCuenta{{ i }}"
+      />
+    </div>
+
+    <button type="submit" [disabled]="!evaluadorForm.valid">Guardar</button>
+  </form>
+
+  <h3>Lista de Evaluadores</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre Completo</th>
+        <th>Números de Cuenta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let evaluador of evaluadores">
+        <td>{{ evaluador.nombreCompleto }}</td>
+        <td>{{ (evaluador.numerosCuentaParticipantes || []).join(', ') }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
