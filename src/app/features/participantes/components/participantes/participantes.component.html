@@ -1,0 +1,90 @@
+<h1>Participantes</h1>
+<h2>Agrega los participantes a la evaluacion</h2>
+<form>
+    <div>
+      <label for="nombreCompleto">Nombre Completo:</label>
+      <input [(ngModel)]="participante.nombreCompleto" type="text" id="nombreCompleto" name="nombreCompleto" />
+    </div>
+
+    <div>
+      <label for="numeroCuenta">Numero de Cuenta:</label>
+      <input
+        [(ngModel)]="participante.numeroCuenta"
+        type="text"
+        id="numeroCuenta"
+        name="numeroCuenta"
+      />
+    </div>
+    <div>
+      <label for="nombreProyecto">Nombre del Proyecto:</label>
+      <input [(ngModel)]="participante.nombreProyecto" type="string" id="nombreProyecto" name="nombreProyecto" />
+    </div>
+
+    <div>
+        <label for="tipoProyecto">Tipo de Proyecto:</label>
+      <select [(ngModel)]="participante.tipoProyecto" id="tipoProyecto" name="tipoProyecto">
+        <option value="PP">Practica Profesional</option>
+        <option value="PG">Proyecto de Graduacion</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="enlaceDocumentoTesis">Enlace de Tesis:</label>
+      <input
+        [(ngModel)]="participante.enlaceDocumentoTesis"
+        type="text"
+        id="enlaceDocumentoTesis"
+        name="enlaceDocumentoTesis"
+      />
+    </div>
+    <div>
+      <label for="notaParcialFase2">Nota Parcial de Fase 2:</label>
+      <input
+        [(ngModel)]="participante.notaParcialFase2"
+        type="number"
+        id="notaParcialFase2"
+        name="notaParcialFase2"
+      />
+    </div>
+    <div>
+        <label for="nombreCatedraticoFase2">Nombre del Catedratico de Fase 2:</label>
+        <input
+          [(ngModel)]="participante.nombreCatedraticoFase2"
+          type="text"
+          id="nombreCatedraticoFase2"
+          name="nombreCatedraticoFase2"
+        />
+      </div>
+  
+    <button (click)="addParticipante()">Agregar Participante</button>
+   
+  </form>
+  
+  <br />
+  <table>
+    <tr>
+      <th>Nombre Completo</th>
+      <th>Numero de Cuenta</th>
+      <th>Nombre del Proyecto</th>
+      <th>Tipo de Proyecto</th>
+      <th>Enlace de Tesis</th>
+      <th>Nota Parcial Fase 2</th>
+      <th>Catedratico Fase 2</th>
+    </tr>
+    @for (item of participantes; track $index) {
+    <tr>
+      <td>{{ item.nombreCompleto }}</td>
+      <td>{{ item.numeroCuenta }}</td>
+      <td>{{ item.nombreProyecto }}</td>
+      <td>{{ item.tipoProyecto}}</td>
+      <td>{{ item.enlaceDocumentoTesis }}</td>
+      <td>{{ item.notaParcialFase2 }}</td>
+      <td>{{ item.nombreCatedraticoFase2 }}</td>
+      <td>
+      </td>
+    </tr>
+    }
+  </table>
+  
+  
+  
