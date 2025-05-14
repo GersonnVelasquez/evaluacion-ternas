@@ -1,90 +1,130 @@
-<h1>Participantes</h1>
-<h2>Agrega los participantes a la evaluacion</h2>
-<form>
-    <div>
-      <label for="nombreCompleto">Nombre Completo:</label>
-      <input [(ngModel)]="participante.nombreCompleto" type="text" id="nombreCompleto" name="nombreCompleto" />
-    </div>
+<h1 class="text-primary text-center my-4">Participantes</h1>
+<h2 class="text-secondary text-center mb-4">Agrega los participantes a la evaluación</h2>
 
-    <div>
-      <label for="numeroCuenta">Numero de Cuenta:</label>
-      <input
-        [(ngModel)]="participante.numeroCuenta"
-        type="text"
-        id="numeroCuenta"
-        name="numeroCuenta"
-      />
-    </div>
-    <div>
-      <label for="nombreProyecto">Nombre del Proyecto:</label>
-      <input [(ngModel)]="participante.nombreProyecto" type="string" id="nombreProyecto" name="nombreProyecto" />
-    </div>
+<div class="container">
+  <div class="d-grid gap-4 grid-container">
 
-    <div>
-        <label for="tipoProyecto">Tipo de Proyecto:</label>
-      <select [(ngModel)]="participante.tipoProyecto" id="tipoProyecto" name="tipoProyecto">
-        <option value="PP">Practica Profesional</option>
-        <option value="PG">Proyecto de Graduacion</option>
-      </select>
-    </div>
-
-    <div>
-      <label for="enlaceDocumentoTesis">Enlace de Tesis:</label>
-      <input
-        [(ngModel)]="participante.enlaceDocumentoTesis"
-        type="text"
-        id="enlaceDocumentoTesis"
-        name="enlaceDocumentoTesis"
-      />
-    </div>
-    <div>
-      <label for="notaParcialFase2">Nota Parcial de Fase 2:</label>
-      <input
-        [(ngModel)]="participante.notaParcialFase2"
-        type="number"
-        id="notaParcialFase2"
-        name="notaParcialFase2"
-      />
-    </div>
-    <div>
-        <label for="nombreCatedraticoFase2">Nombre del Catedratico de Fase 2:</label>
-        <input
-          [(ngModel)]="participante.nombreCatedraticoFase2"
-          type="text"
-          id="nombreCatedraticoFase2"
-          name="nombreCatedraticoFase2"
-        />
+    <!-- Formulario -->
+    <form
+      class="formulario"
+      *ngIf="participanteForm"
+      [formGroup]="participanteForm"
+      (ngSubmit)="addParticipante()"
+    >
+      <div class="mb-3">
+        <label for="nombreCompleto" class="form-label">Nombre Completo</label>
+        <input type="text" id="nombreCompleto" class="form-control" formControlName="nombreCompleto" />
       </div>
-  
-    <button (click)="addParticipante()">Agregar Participante</button>
-   
-  </form>
-  
-  <br />
-  <table>
-    <tr>
-      <th>Nombre Completo</th>
-      <th>Numero de Cuenta</th>
-      <th>Nombre del Proyecto</th>
-      <th>Tipo de Proyecto</th>
-      <th>Enlace de Tesis</th>
-      <th>Nota Parcial Fase 2</th>
-      <th>Catedratico Fase 2</th>
-    </tr>
-    @for (item of participantes; track $index) {
-    <tr>
-      <td>{{ item.nombreCompleto }}</td>
-      <td>{{ item.numeroCuenta }}</td>
-      <td>{{ item.nombreProyecto }}</td>
-      <td>{{ item.tipoProyecto}}</td>
-      <td>{{ item.enlaceDocumentoTesis }}</td>
-      <td>{{ item.notaParcialFase2 }}</td>
-      <td>{{ item.nombreCatedraticoFase2 }}</td>
-      <td>
-      </td>
-    </tr>
-    }
-  </table>
-  
-  
+
+      <div class="mb-3">
+        <label for="numeroCuenta" class="form-label">Número de Cuenta</label>
+        <input type="text" id="numeroCuenta" class="form-control" formControlName="numeroCuenta" />
+      </div>
+
+      <div class="mb-3">
+        <label for="nombreProyecto" class="form-label">Nombre del Proyecto</label>
+        <input type="text" id="nombreProyecto" class="form-control" formControlName="nombreProyecto" />
+      </div>
+
+      <div class="mb-3">
+        <label for="tipoProyecto" class="form-label">Tipo de Proyecto</label>
+        <select id="tipoProyecto" class="form-select" formControlName="tipoProyecto">
+          <option value="PP">Práctica Profesional</option>
+          <option value="PG">Proyecto de Graduación</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="enlaceDocumentoTesis" class="form-label">Enlace de Tesis</label>
+        <input type="text" id="enlaceDocumentoTesis" class="form-control" formControlName="enlaceDocumentoTesis" />
+      </div>
+
+      <div class="mb-3">
+        <label for="notaParcialFase2" class="form-label">Nota Parcial de Fase 2</label>
+        <input type="number" id="notaParcialFase2" class="form-control" formControlName="notaParcialFase2" />
+      </div>
+
+      <div class="mb-4">
+        <label for="nombreCatedraticoFase2" class="form-label">Nombre del Catedrático de Fase 2</label>
+        <input type="text" id="nombreCatedraticoFase2" class="form-control" formControlName="nombreCatedraticoFase2" />
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg w-100">Agregar Participante</button>
+    </form>
+
+    <!-- Tabla -->
+    <div class="table-responsive tabla">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-primary text-center">
+          <tr>
+            <th>Nombre Completo</th>
+            <th>Número de Cuenta</th>
+            <th>Nombre del Proyecto</th>
+            <th>Tipo de Proyecto</th>
+            <th>Enlace de Tesis</th>
+            <th>Nota Parcial Fase 2</th>
+            <th>Catedrático Fase 2</th>
+            <th style="width: 180px;">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of participantes; track $index) {
+            <tr>
+              <td>{{ item.nombreCompleto }}</td>
+              <td>{{ item.numeroCuenta }}</td>
+              <td>{{ item.nombreProyecto }}</td>
+              <td>{{ item.tipoProyecto }}</td>
+              <td><a [href]="item.enlaceDocumentoTesis" target="_blank" class="text-truncate d-inline-block" style="max-width: 150px;">{{ item.enlaceDocumentoTesis }}</a></td>
+              <td>{{ item.notaParcialFase2 }}</td>
+              <td>{{ item.nombreCatedraticoFase2 }}</td>
+              <td class="text-center">
+                <div class="d-flex justify-content-center gap-2">
+                  <button class="btn btn-sm btn-primary flex-grow-0" (click)="editarParticipante(item)">Editar</button>
+                  <button class="btn btn-sm btn-danger flex-grow-0" (click)="eliminarParticipante(item)">Borrar</button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="modalFormularioInvalido"
+  tabindex="-1"
+  aria-labelledby="modalFormularioInvalidoLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-light border-0 shadow-lg rounded-4">
+      <div class="modal-header border-0">
+        <h5
+          class="modal-title text-danger fw-bold w-100 text-center"
+          id="modalFormularioInvalidoLabel"
+        >
+          Formulario no válido
+        </h5>
+        <button
+          type="button"
+          class="btn-close position-absolute end-0 top-0 m-3"
+          data-bs-dismiss="modal"
+          aria-label="Cerrar"
+        ></button>
+      </div>
+      <div class="modal-body text-secondary fs-6 text-center">
+        Todos los campos son obligatorios.<br />
+        Por favor, complete el formulario antes de continuar.
+      </div>
+      <div class="modal-footer border-0 justify-content-center">
+        <button type="button" class="btn btn-danger px-4" data-bs-dismiss="modal">
+          Entendido
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
   
