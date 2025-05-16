@@ -1,90 +1,181 @@
-<h1>Participantes</h1>
-<h2>Agrega los participantes a la evaluacion</h2>
-<form>
-    <div>
-      <label for="nombreCompleto">Nombre Completo:</label>
-      <input [(ngModel)]="participante.nombreCompleto" type="text" id="nombreCompleto" name="nombreCompleto" />
-    </div>
-
-    <div>
-      <label for="numeroCuenta">Numero de Cuenta:</label>
-      <input
-        [(ngModel)]="participante.numeroCuenta"
-        type="text"
-        id="numeroCuenta"
-        name="numeroCuenta"
-      />
-    </div>
-    <div>
-      <label for="nombreProyecto">Nombre del Proyecto:</label>
-      <input [(ngModel)]="participante.nombreProyecto" type="string" id="nombreProyecto" name="nombreProyecto" />
-    </div>
-
-    <div>
-        <label for="tipoProyecto">Tipo de Proyecto:</label>
-      <select [(ngModel)]="participante.tipoProyecto" id="tipoProyecto" name="tipoProyecto">
-        <option value="PP">Practica Profesional</option>
-        <option value="PG">Proyecto de Graduacion</option>
-      </select>
-    </div>
-
-    <div>
-      <label for="enlaceDocumentoTesis">Enlace de Tesis:</label>
-      <input
-        [(ngModel)]="participante.enlaceDocumentoTesis"
-        type="text"
-        id="enlaceDocumentoTesis"
-        name="enlaceDocumentoTesis"
-      />
-    </div>
-    <div>
-      <label for="notaParcialFase2">Nota Parcial de Fase 2:</label>
-      <input
-        [(ngModel)]="participante.notaParcialFase2"
-        type="number"
-        id="notaParcialFase2"
-        name="notaParcialFase2"
-      />
-    </div>
-    <div>
-        <label for="nombreCatedraticoFase2">Nombre del Catedratico de Fase 2:</label>
-        <input
-          [(ngModel)]="participante.nombreCatedraticoFase2"
-          type="text"
-          id="nombreCatedraticoFase2"
-          name="nombreCatedraticoFase2"
-        />
+<!-- Modal de error -->
+<div class="modal fade" id="formErrorModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">Formulario incompleto</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
       </div>
-  
-    <button (click)="addParticipante()">Agregar Participante</button>
-   
-  </form>
-  
-  <br />
-  <table>
-    <tr>
-      <th>Nombre Completo</th>
-      <th>Numero de Cuenta</th>
-      <th>Nombre del Proyecto</th>
-      <th>Tipo de Proyecto</th>
-      <th>Enlace de Tesis</th>
-      <th>Nota Parcial Fase 2</th>
-      <th>Catedratico Fase 2</th>
-    </tr>
-    @for (item of participantes; track $index) {
-    <tr>
-      <td>{{ item.nombreCompleto }}</td>
-      <td>{{ item.numeroCuenta }}</td>
-      <td>{{ item.nombreProyecto }}</td>
-      <td>{{ item.tipoProyecto}}</td>
-      <td>{{ item.enlaceDocumentoTesis }}</td>
-      <td>{{ item.notaParcialFase2 }}</td>
-      <td>{{ item.nombreCatedraticoFase2 }}</td>
-      <td>
-      </td>
-    </tr>
-    }
-  </table>
-  
-  
-  
+      <div class="modal-body">
+        Por favor, complete todos los campos obligatorios antes de enviar.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt-4">
+  <div class="row gy-4 responsive-participantes">
+    <!-- Formulario -->
+    <div class="col-lg-6 col-12">
+      <div class="form-container">
+        <h1 class="mb-3">Participantes</h1>
+        <h2 class="mb-4 text-muted">
+          Agrega los participantes a la evaluación
+        </h2>
+
+        <form
+          [formGroup]="participanteForm"
+          (ngSubmit)="addParticipante()"
+          novalidate
+        >
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Nombre Completo:</label>
+              <input
+                formControlName="nombreCompleto"
+                type="text"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Número de Cuenta:</label>
+              <input
+                formControlName="numeroCuenta"
+                type="number"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Nombre del Proyecto:</label>
+              <input
+                formControlName="nombreProyecto"
+                type="text"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Tipo de Proyecto:</label>
+              <select formControlName="tipoProyecto" class="form-select">
+                <option value="PP">Práctica Profesional</option>
+                <option value="PG">Proyecto de Graduación</option>
+              </select>
+            </div>
+            <div class="col-md-12">
+              <label class="form-label">Enlace de Tesis:</label>
+              <input
+                formControlName="enlaceDocumentoTesis"
+                type="text"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Nota Parcial Fase 2:</label>
+              <input
+                formControlName="notaParcialFase2"
+                type="number"
+                class="form-control"
+              />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Nombre del Catedrático Fase 2:</label>
+              <input
+                formControlName="nombreCatedraticoFase2"
+                type="text"
+                class="form-control"
+              />
+            </div>
+            <div class="col-12 text-end">
+              <div class="d-flex gap-2">
+                @if (!isEditando) {
+                <button class="btn btn-success mt-3" type="submit">
+                  Agregar Participante
+                </button>
+                } @if (isEditando) {
+                <button class="btn btn-primary mt-3" type="button" (click)="guardarCambios()">
+                  Guardar Cambios
+                </button>
+                <button
+                  class="btn btn-secondary mt-3"
+                  type="button"
+                  (click)="limpiarFormulario()"
+                >
+                  Cancelar
+                </button>
+                }
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="col-lg-6 col-12">
+      <div class="table-container">
+        <h3 class="mb-3">Listado de Participantes</h3>
+
+        <input
+          type="text"
+          [(ngModel)]="busqueda"
+          class="form-control mb-3"
+          placeholder="Buscar participante..."
+        />
+
+        <table class="table table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th>Nombre</th>
+              <th>Cuenta</th>
+              <th>Proyecto</th>
+              <th>Tipo</th>
+              <th>Enlace</th>
+              <th>Nota</th>
+              <th>Catedrático</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of participantesFiltrados; let i = index">
+              <td>{{ item.nombreCompleto }}</td>
+              <td>{{ item.numeroCuenta }}</td>
+              <td>{{ item.nombreProyecto }}</td>
+              <td>{{ item.tipoProyecto }}</td>
+              <td>
+                <a [href]="item.enlaceDocumentoTesis" target="_blank">{{
+                  item.enlaceDocumentoTesis
+                }}</a>
+              </td>
+              <td>{{ item.notaParcialFase2 }}</td>
+              <td>{{ item.nombreCatedraticoFase2 }}</td>
+              <td>
+                <div class="d-flex gap-2">
+                  <button
+                    class="btn btn-outline-primary btn-sm"
+                    (click)="editarParticipante(item)"
+                  >
+                    Editar
+                  </button>
+                  <button
+                    class="btn btn-outline-danger btn-sm"
+                    (click)="eliminarParticipante(item)"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
