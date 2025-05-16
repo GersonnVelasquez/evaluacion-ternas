@@ -1,38 +1,89 @@
-.responsive-participantes {
-  .form-container,
-  .table-container {
-    background: #ffffff;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
+.background-image {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url('https://images.hdqwalls.com/download/sky-minimal-2m-3840x2160.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: -2;
+  opacity: 0.95;
+}
 
-  h1, h2, h3 {
-    color: #1a1a1a;
-  }
+.gradient-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg,
+    rgba(30, 0, 60, 0.92) 0%,
+    rgba(0, 20, 80, 0.88) 50%,
+    rgba(20, 20, 20, 0.85) 100%);
+  z-index: -1;
+}
 
-  form {
-    .form-label {
-      font-weight: 500;
-    }
+.form-container,
+.table-container {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
+  color: #fff;
 
-    .form-control,
-    .form-select {
-      border-radius: 8px;
-    }
+  overflow-x: auto;
+  width: 100%;
+}
 
-    button[type="submit"] {
-      margin-top: 1rem;
-    }
-  }
+.table-container::-webkit-scrollbar {
+  height: 8px;
+}
 
-  table {
-    border-radius: 8px;
-    overflow: hidden;
-    font-size: 0.92rem;
+.table-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
 
-    th, td {
-      vertical-align: middle;
-    }
-  }
+.table-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.table-container .btn-outline-edit {
+  color: #0d6efd; /* Azul Bootstrap */
+  border: 1px solid #0d6efd;
+  background-color: transparent;
+  transition: all 0.25s ease-in-out;
+}
+
+.table-container .btn-outline-edit:hover {
+  background-color: #0d6efd;
+  color: #fff;
+  box-shadow: 0 0 8px rgba(13, 110, 253, 0.4);
+}
+
+
+.glass-modal {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+h1, h2, h3, label {
+  color: #fff;
+}
+
+.table thead th {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+a {
+  color: #9fd3ff;
 }

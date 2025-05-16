@@ -1,66 +1,48 @@
-<!-- Modal de error -->
+<!-- Fondo -->
+<div class="background-image"></div>
+<div class="gradient-overlay"></div>
+
+<!-- Modal de Error -->
 <div class="modal fade" id="formErrorModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-danger text-white">
+    <div class="modal-content glass-modal animate__animated animate__fadeInDown animate__faster">
+      <div class="modal-header bg-danger text-white rounded-top">
         <h5 class="modal-title">Formulario incompleto</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-        ></button>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-white">
         Por favor, complete todos los campos obligatorios antes de enviar.
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" data-bs-dismiss="modal">
-          Cerrar
-        </button>
+        <button class="btn btn-outline-light" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Contenido principal -->
 <div class="container-fluid mt-4">
   <div class="row gy-4 responsive-participantes">
+
     <!-- Formulario -->
     <div class="col-lg-6 col-12">
-      <div class="form-container">
-        <h1 class="mb-3">Participantes</h1>
-        <h2 class="mb-4 text-muted">
-          Agrega los participantes a la evaluación
-        </h2>
+      <div class="form-container animate__animated animate__fadeInUp animate__faster">
+        <h1 class="mb-3 text-white">Participantes</h1>
+        <h2 class="mb-4 text-white-50">Agrega los participantes a la evaluación</h2>
 
-        <form
-          [formGroup]="participanteForm"
-          (ngSubmit)="addParticipante()"
-          novalidate
-        >
+        <form [formGroup]="participanteForm" (ngSubmit)="addParticipante()" novalidate>
           <div class="row g-3">
             <div class="col-md-6">
               <label class="form-label">Nombre Completo:</label>
-              <input
-                formControlName="nombreCompleto"
-                type="text"
-                class="form-control"
-              />
+              <input formControlName="nombreCompleto" type="text" class="form-control" />
             </div>
             <div class="col-md-6">
               <label class="form-label">Número de Cuenta:</label>
-              <input
-                formControlName="numeroCuenta"
-                type="number"
-                class="form-control"
-              />
+              <input formControlName="numeroCuenta" type="number" class="form-control" />
             </div>
             <div class="col-md-6">
               <label class="form-label">Nombre del Proyecto:</label>
-              <input
-                formControlName="nombreProyecto"
-                type="text"
-                class="form-control"
-              />
+              <input formControlName="nombreProyecto" type="text" class="form-control" />
             </div>
             <div class="col-md-6">
               <label class="form-label">Tipo de Proyecto:</label>
@@ -71,46 +53,21 @@
             </div>
             <div class="col-md-12">
               <label class="form-label">Enlace de Tesis:</label>
-              <input
-                formControlName="enlaceDocumentoTesis"
-                type="text"
-                class="form-control"
-              />
+              <input formControlName="enlaceDocumentoTesis" type="text" class="form-control" />
             </div>
             <div class="col-md-6">
               <label class="form-label">Nota Parcial Fase 2:</label>
-              <input
-                formControlName="notaParcialFase2"
-                type="number"
-                class="form-control"
-              />
+              <input formControlName="notaParcialFase2" type="number" class="form-control" />
             </div>
             <div class="col-md-6">
               <label class="form-label">Nombre del Catedrático Fase 2:</label>
-              <input
-                formControlName="nombreCatedraticoFase2"
-                type="text"
-                class="form-control"
-              />
+              <input formControlName="nombreCatedraticoFase2" type="text" class="form-control" />
             </div>
             <div class="col-12 text-end">
               <div class="d-flex gap-2">
-                @if (!isEditando) {
-                <button class="btn btn-success mt-3" type="submit">
-                  Agregar Participante
-                </button>
-                } @if (isEditando) {
-                <button class="btn btn-primary mt-3" type="button" (click)="guardarCambios()">
-                  Guardar Cambios
-                </button>
-                <button
-                  class="btn btn-secondary mt-3"
-                  type="button"
-                  (click)="limpiarFormulario()"
-                >
-                  Cancelar
-                </button>
-                }
+                <button *ngIf="!isEditando" class="btn btn-success mt-3" type="submit">Agregar Participante</button>
+                <button *ngIf="isEditando" class="btn btn-primary mt-3" type="button" (click)="guardarCambios()">Guardar Cambios</button>
+                <button *ngIf="isEditando" class="btn btn-secondary mt-3" type="button" (click)="limpiarFormulario()">Cancelar</button>
               </div>
             </div>
           </div>
@@ -120,17 +77,12 @@
 
     <!-- Tabla -->
     <div class="col-lg-6 col-12">
-      <div class="table-container">
-        <h3 class="mb-3">Listado de Participantes</h3>
+      <div class="table-container animate__animated animate__fadeInUp animate__faster">
+        <h3 class="mb-3 text-white">Listado de Participantes</h3>
 
-        <input
-          type="text"
-          [(ngModel)]="busqueda"
-          class="form-control mb-3"
-          placeholder="Buscar participante..."
-        />
+        <input type="text" [(ngModel)]="busqueda" class="form-control mb-3" placeholder="Buscar participante..." />
 
-        <table class="table table-bordered">
+        <table class="table table-bordered table-hover text-white">
           <thead class="table-dark">
             <tr>
               <th>Nombre</th>
@@ -144,32 +96,18 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of participantesFiltrados; let i = index">
+            <tr *ngFor="let item of participantesFiltrados">
               <td>{{ item.nombreCompleto }}</td>
               <td>{{ item.numeroCuenta }}</td>
               <td>{{ item.nombreProyecto }}</td>
               <td>{{ item.tipoProyecto }}</td>
-              <td>
-                <a [href]="item.enlaceDocumentoTesis" target="_blank">{{
-                  item.enlaceDocumentoTesis
-                }}</a>
-              </td>
+              <td><a [href]="item.enlaceDocumentoTesis" target="_blank">{{ item.enlaceDocumentoTesis }}</a></td>
               <td>{{ item.notaParcialFase2 }}</td>
               <td>{{ item.nombreCatedraticoFase2 }}</td>
               <td>
                 <div class="d-flex gap-2">
-                  <button
-                    class="btn btn-outline-primary btn-sm"
-                    (click)="editarParticipante(item)"
-                  >
-                    Editar
-                  </button>
-                  <button
-                    class="btn btn-outline-danger btn-sm"
-                    (click)="eliminarParticipante(item)"
-                  >
-                    Eliminar
-                  </button>
+                  <button class="btn btn-outline-edit btn-sm" (click)="editarParticipante(item)">Editar</button>
+                  <button class="btn btn-outline-danger btn-sm" (click)="eliminarParticipante(item)">Eliminar</button>
                 </div>
               </td>
             </tr>
@@ -177,5 +115,6 @@
         </table>
       </div>
     </div>
+
   </div>
 </div>

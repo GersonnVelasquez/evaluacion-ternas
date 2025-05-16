@@ -7,7 +7,7 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: '',
+    path: 'home',
     loadComponent: () =>
       import('./features/home/components/home/home.component').then(
         (m) => m.HomeComponent
