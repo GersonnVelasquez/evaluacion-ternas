@@ -6,5 +6,21 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideFirebaseApp(() => initializeApp({ projectId: "evaluacion-ternas", appId: "1:391646671824:web:6dce9cf604d8a973e0bfd5", storageBucket: "evaluacion-ternas.firebasestorage.app", apiKey: "AIzaSyBoAATZVgLnCHKlqtaoJxcmJPdHEOJ2z98", authDomain: "evaluacion-ternas.firebaseapp.com", messagingSenderId: "391646671824" })), provideFirestore(() => getFirestore())]
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideFirebaseApp(() =>
+      initializeApp({
+        projectId: 'ejercicio-clase-618ae',
+        appId: '1:622452255772:web:54c0d7fd7825e81a34c3d9',
+        storageBucket: 'ejercicio-clase-618ae.firebasestorage.app',
+        apiKey: 'AIzaSyA4uWAFjJqkBlSZc7y1rZMah_XUT7Rp1AQ',
+        authDomain: 'ejercicio-clase-618ae.firebaseapp.com',
+        messagingSenderId: '622452255772',
+        measurementId: 'G-TYZP6LK468',
+      })
+    ),
+    provideFirestore(() => getFirestore()),
+  ],
 };
+

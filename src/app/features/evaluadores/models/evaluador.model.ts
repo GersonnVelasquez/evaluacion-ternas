@@ -1,5 +1,5 @@
 export interface Evaluador {
-    nombreCompleto: string;
-    numerosCuentaParticipantes: string[];
-  }
-  
+  id?: string;
+  nombreCompleto: string;
+  numerosCuentaParticipantes: string[];
+}

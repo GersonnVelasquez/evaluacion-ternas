@@ -1,40 +1,57 @@
-<div>
-  <h2>Registrar Evaluador</h2>
+<div class="container mt-4">
 
-  <form (ngSubmit)="addEvaluador()" #evaluadorForm="ngForm">
-    <label for="nombreCompleto">Nombre Completo:</label>
-    <input
-      id="nombreCompleto"
-      [(ngModel)]="evaluador.nombreCompleto"
-      name="nombreCompleto"
-      required
-    />
+  <div class="mb-4">
+    <h2 class="mb-3">Registrar Evaluador</h2>
+    <form (ngSubmit)="addEvaluador()" #evaluadorForm="ngForm">
+      <div class="mb-3">
+        <label for="nombreCompleto" class="form-label">Nombre Completo:</label>
+        <input
+          id="nombreCompleto"
+          [(ngModel)]="evaluador.nombreCompleto"
+          name="nombreCompleto"
+          required
+          class="form-control"
+        />
+      </div>
 
-    <div *ngFor="let num of [0, 1, 2, 3, 4]; let i = index">
-      <label for="numCuenta{{ i }}">Número de Cuenta {{ i + 1 }}:</label>
-      <input
-        id="numCuenta{{ i }}"
-        [(ngModel)]="evaluador.numerosCuentaParticipantes[i]"
-        name="numCuenta{{ i }}"
-      />
-    </div>
+      <div *ngFor="let num of [0, 1, 2, 3, 4]; let i = index" class="mb-3">
+        <label for="numCuenta{{ i }}" class="form-label">Número de Cuenta {{ i + 1 }}:</label>
+        <input
+          id="numCuenta{{ i }}"
+          [(ngModel)]="evaluador.numerosCuentaParticipantes[i]"
+          name="numCuenta{{ i }}"
+          class="form-control"
+        />
+      </div>
 
-    <button type="submit" [disabled]="!evaluadorForm.valid">Guardar</button>
-  </form>
+      <div class="d-flex gap-2">
+        <button type="button" (click)="addEvaluador()" class="btn btn-primary">Agregar</button>
+        <button type="button" (click)="guardarEvaluador()" class="btn btn-success">Actualizar</button>
+      </div>
+    </form>
+  </div>
 
-  <h3>Lista de Evaluadores</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Nombre Completo</th>
-        <th>Números de Cuenta</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let evaluador of evaluadores">
-        <td>{{ evaluador.nombreCompleto }}</td>
-        <td>{{ (evaluador.numerosCuentaParticipantes || []).join(', ') }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div>
+    <h3 class="mb-3">Lista de Evaluadores</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Nombre Completo</th>
+          <th>Números de Cuenta</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let evaluador of evaluadores">
+          <td>{{ evaluador.nombreCompleto }}</td>
+          <td>{{formatNumerosCuenta(evaluador.numerosCuentaParticipantes)}}</td>
+          <!--<td>{{ (evaluador.numerosCuentaParticipantes || []).join(", ") }}</td>-->
+          <td>
+            <button (click)="editEvaluador(evaluador)" class="btn btn-warning btn-sm me-2">Editar</button>
+            <button (click)="deleteEvaluador(evaluador)" class="btn btn-danger btn-sm">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

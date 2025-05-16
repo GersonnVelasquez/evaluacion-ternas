@@ -1,0 +1,25 @@
+<div class="rubrica-container container mt-4 d-grid" style="grid-template-columns: 1fr; gap: 20px; max-width: 800px;">
+    <h2 class="mb-4">Gestión de Rúbrica</h2>
+
+    <form class="row g-2 align-items-center mb-4">
+      <label for="criterio" class="col-auto col-form-label">Criterio:</label>
+      <div class="col-auto">
+        <input id="criterio" [(ngModel)]="criterio" name="criterio" class="form-control" />
+      </div>
+      <div class="col-auto">
+        <button type="button" (click)="addCriterio()" class="btn btn-primary">
+          {{ editIndex !== null ? 'Actualizar' : 'Agregar' }}
+        </button>
+      </div>
+    </form>
+  
+    <ul class="list-group" style="max-height: 350px; overflow-y: auto; max-width: 100%;">
+      <li *ngFor="let criterio of rubrica.criterios; let i = index" class="list-group-item d-flex justify-content-between align-items-center">
+        <span>{{ criterio }}</span>
+        <span>
+          <button (click)="editCriterio(i)" class="btn btn-sm btn-warning me-2">Editar</button>
+          <button (click)="deleteCriterio(i)" class="btn btn-sm btn-danger">Eliminar</button>
+        </span>
+      </li>
+    </ul>
+</div>
