@@ -1,12 +1,9 @@
 .container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 45px;
-  padding: 45px;
-}
-
-@media (min-width: 768px) {
-  .container {
+  gap: 20px;
+  
+  @media (min-width: 768px) {
     grid-template-columns: 1fr 2fr;
     align-items: start;
   }

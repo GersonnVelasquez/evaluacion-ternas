@@ -6,6 +6,9 @@ import {
   addDoc,
   collection,
   collectionData,
+  deleteDoc,
+  updateDoc,
+  doc,
   Firestore,
 } from '@angular/fire/firestore';
 
@@ -23,5 +26,19 @@ export class EvaluadoresService {
   addEvaluador(evaluador: Evaluador){
    const evaluadoresCollection = collection(this.firestore, 'evaluadores');
     return addDoc(evaluadoresCollection, evaluador)
+  }
+
+  editEvaluador(evaluador: Evaluador){
+    const evaluadoresCollection = collection(this.firestore, 'evaluadores');
+    const evaluadorDoc = doc(evaluadoresCollection, evaluador.id);
+    return updateDoc(evaluadorDoc, {
+      ...evaluador,
+    });
+  }
+
+  deleteEvaluador(evaluador: Evaluador){
+    const evaluadoresCollection = collection(this.firestore, 'evaluadores');
+    const evaluadorDoc = doc(evaluadoresCollection, evaluador.id);
+    return deleteDoc(evaluadorDoc);
   }
 }

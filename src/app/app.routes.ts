@@ -27,4 +27,11 @@ export const routes: Routes = [
         './features/participantes/components/participantes/participantes.component'
       ).then((m) => m.ParticipantesComponent),
   },
+   {
+    path: 'rubrica',
+    loadComponent: () =>
+      import(
+        './features/rubrica/components/rubrica/rubrica.component'
+      ).then((m) => m.RubricaComponent),
+  },
 ];
