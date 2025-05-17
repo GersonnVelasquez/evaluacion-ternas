@@ -6,4 +6,8 @@ tipoProyecto : string
 enlaceDocumentoTesis:string
 notaParcialFase2:number | null
 nombreCatedraticoFase2: string
+ uuid?: string
 }
+
+
+
